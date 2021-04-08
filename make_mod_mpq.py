@@ -2,23 +2,25 @@ import os
 import configparser
 import subprocess
 
-from convert_all_txt_to_bin import files_and_structs
+from convert_all_bins_to_txt import files_and_structs
 
 
 target_files = list(files_and_structs.keys())
 
-### extract bins from patch_mpq
+# extract bins from patch mpq
 def mpq_extract_bin(filename_txt):
     filename_bin = os.path.basename(filename_txt)[:-3] + 'bin'
     path_in_mpq = 'data\\global\\excel\\' + filename_bin
-    code = subprocess.call(r'cd WinMPQ && .\\WinMPQ.exe add ..\\mod_maker\\mpqModded\\Patch_D2.mpq ..\\mod_maker\\BinFilesModded\\' + filename_bin + ' ' + path_in_mpq, shell=True)
+    code = subprocess.call(r'cd WinMPQ && .\\WinMPQ.exe e ..\\mpqOrig\\Patch_D2.mpq ' + path_in_mpq + ' ..\\BinFiles\\', shell=True)
     print(f'code: {code}')
-    print(f"Added {filename_bin} to mpqModded\\patch_d2.mpq")
+    print(f"Extracted {filename_bin} to BinFiles\\")
 
-mpq_extract_bin(filename)
+for file in target_files:
+    mpq_extract_bin(file)
 
 
-
+# convert bins to txt
+subprocess.call(["python", "convert_all_bins_to_txt.py"])
 
 
 # read in settings.ini
@@ -32,15 +34,16 @@ def get_filelines(filename):
     return lines
 
 
-# Monster Density corresponds to file TsvFiles/Levels.txt
+### TODO: if the [section] is commented out in the ini file, config.items(section) will error below
+# Monster Density corresponds to file TxtFiles/Levels.txt
 section = 'Monster Density'
-filename = os.path.join('TsvFiles', 'Levels.txt')
+# TODO filenames can be gotten from target_files
+filename = os.path.join('TxtFiles', 'Levels.txt')
 lines = get_filelines(filename)
 
 col_names = lines[0].split('\t')
 idx_monden, idx_monden_n, idx_monden_h = col_names.index('MonDen'), col_names.index('MonDenN'), col_names.index('MonDenH')
-
-col_level_name = lines[0].split().index('LevelName')
+col_level_name = col_names.index('LevelName')
 
 for key, val in config.items(section):
     found = False
@@ -55,43 +58,20 @@ for key, val in config.items(section):
             print(f'For "{key}" the edited "{section}" value is: {val}')
             break
     if not found:
-        print(f'***WARNING: Key "{key}" not found in the tsv file columns!')
+        print(f'***WARNING: Key "{key}" not found in the txt file columns!')
 
-# once done with edits to the tsv lines write the file.  then use tsv_to_bin to create bins, and WinMPQ to add to mpq
+# once done with edits to the txt lines write the file.  then use txt_to_bin to create bins, and WinMPQ to add to mpq
 with open(filename, 'w') as f:
     f.write("\n".join(lines) + "\n")
 
 
-subprocess.call(["python","convert_all_tsv_to_bin.py"])
-
-# ..\WinMPQ\WinMPQ.exe add .\mpqModded\Patch_D2.mpq .\BinFilesModded\Levels.bin data\global\excel\Levels.bin
-# cmd_str = r"..\WinMPQ\WinMPQ.exe add .\mpqModded\Patch_D2.mpq .\BinFilesModded\Levels.bin data\global\excel\Levels.bin"
-# subprocess.call(r"cd ..\WinMPQ\\", shell=True)
-# code = subprocess.call(r'.\\WinMPQ.exe add ..\\mod_maker\\mpqModded\\Patch_D2.mpq ..\\mod_maker\\BinFilesModded\\Levels.bin data\\global\\excel\\Levels.bin', shell=True)
-# path_in_mpq = r'data\global\excel\Levels.bin'
-# code = subprocess.call(r'cd ..\\WinMPQ && .\\WinMPQ.exe add ..\\mod_maker\\mpqModded\\Patch_D2.mpq ..\\mod_maker\\BinFilesModded\\Levels.bin' + ' ' + path_in_mpq, shell=True)
-# print(f'code: {code}')
-# print("Added Levels.bin to mpqModded\\patch_d2.mpq")
-
-def mpq_add_bin(filename_tsv):
-    filename_bin = os.path.basename(filename_tsv)[:-3] + 'bin'
-    path_in_mpq = 'data\\global\\excel\\' + filename_bin
-    code = subprocess.call(r'cd WinMPQ && .\\WinMPQ.exe add ..\\mod_maker\\mpqModded\\Patch_D2.mpq ..\\mod_maker\\BinFilesModded\\' + filename_bin + ' ' + path_in_mpq, shell=True)
-    print(f'code: {code}')
-    print(f"Added {filename_bin} to mpqModded\\patch_d2.mpq")
-
-mpq_add_bin(filename)
-
-
-
-# Unique Items corresponds to file TsvFiles/UniqueItems.txt
+# Unique Items corresponds to file TxtFiles/UniqueItems.txt
 section = 'Unique Items'
-filename = os.path.join('TsvFiles', 'UniqueItems.txt')
+filename = os.path.join('TxtFiles', 'UniqueItems.txt')
 lines = get_filelines(filename)
 
 col_names = lines[0].split('\t')
 idx_enabled = col_names.index('enabled')
-# TODO: fix for the others   lines[0].split()  replaced with col_names variable from above
 col_index_name = col_names.index('index')
 col_index_lvl = col_names.index('lvl')
 col_index_lvlreq = col_names.index('lvl_req')
@@ -116,33 +96,21 @@ for key, val in config.items(section):
             print(f'For "{key}" the edited "{section}" value is: {val}')
             break
     if not found:
-        print(f'***WARNING: Key "{key}" not found in the tsv file columns!')
+        print(f'***WARNING: Key "{key}" not found in the txt file columns!')
 
-# once done with edits to the tsv lines write the file.  then use tsv_to_bin to create bins, and WinMPQ to add to mpq
+# once done with edits to the txt lines write the file.  then use txt_to_bin to create bins, and WinMPQ to add to mpq
 with open(filename, 'w') as f:
     f.write("\n".join(lines) + "\n")
 
-# TODO: This can be called once and then mpq_add_bin can be called on all the files to add
-subprocess.call(["python","convert_all_tsv_to_bin.py"])
 
-mpq_add_bin(filename)
-
-
-### TODO: maybe use a decorator here
-# for the repeated with open() ... lines = 
-
-# or just just a function that returns the lines  (lines = fff(filename), then do operations with lines)
-
-
-# Treasure Class corresponds to file TsvFiles/TreasureClassEx.txt
+# Treasure Class corresponds to file TxtFiles/TreasureClassEx.txt
 section = 'Treasure Class'
-filename = os.path.join('TsvFiles', 'TreasureClassEx.txt')
+filename = os.path.join('TxtFiles', 'TreasureClassEx.txt')
 lines = get_filelines(filename)
 
 col_names = lines[0].split('\t')
 idx_prob2, idx_prob3 = col_names.index('Prob2'), col_names.index('Prob3')
-
-col_treasureclass = lines[0].split().index('TreasureClass')
+col_treasureclass = col_names.index('TreasureClass')
 
 for key, val in config.items(section):
     found = False
@@ -159,27 +127,21 @@ for key, val in config.items(section):
             print(f'For "{key}" the edited "{section}" value is: {val}')
             break
     if not found:
-        print(f'***WARNING: Key "{key}" not found in the tsv file columns!')
+        print(f'***WARNING: Key "{key}" not found in the txt file columns!')
 
-# once done with edits to the tsv lines write the file.  then use tsv_to_bin to create bins, and WinMPQ to add to mpq
+# once done with edits to the txt lines write the file.  then use txt_to_bin to create bins, and WinMPQ to add to mpq
 with open(filename, 'w') as f:
     f.write("\n".join(lines) + "\n")
 
-# TODO: This can be called once and then mpq_add_bin can be called on all the files to add
-subprocess.call(["python","convert_all_tsv_to_bin.py"])
 
-mpq_add_bin(filename)
-
-
-# Skills corresponds to file TsvFiles/Skills.txt
+# Skills corresponds to file TxtFiles/Skills.txt
 section = 'Skills'
-filename = os.path.join('TsvFiles', 'Skills.txt')
+filename = os.path.join('TxtFiles', 'Skills.txt')
 lines = get_filelines(filename)
 
 col_names = lines[0].split('\t')
 idx_delay = col_names.index('delay')
-
-col_id = lines[0].split().index('Id')
+col_id = col_names.index('Id')
 
 for key, val in config.items(section):
     found = False
@@ -193,23 +155,16 @@ for key, val in config.items(section):
             print(f'For "{key}" the edited "{section}" value is: {val}')
             break
     if not found:
-        print(f'***WARNING: Key "{key}" not found in the tsv file columns!')
+        print(f'***WARNING: Key "{key}" not found in the txt file columns!')
 
-# once done with edits to the tsv lines write the file.  then use tsv_to_bin to create bins, and WinMPQ to add to mpq
+# once done with edits to the txt lines write the file.  then use txt_to_bin to create bins, and WinMPQ to add to mpq
 with open(filename, 'w') as f:
     f.write("\n".join(lines) + "\n")
 
-# TODO: This can be called once and then mpq_add_bin can be called on all the files to add
-subprocess.call(["python","convert_all_tsv_to_bin.py"])
 
-mpq_add_bin(filename)
-
-
-
-
-# Item Ratio corresponds to file TsvFiles/ItemRatio.txt
+# Item Ratio corresponds to file TxtFiles/ItemRatio.txt
 section = 'Item Ratio'
-filename = os.path.join('TsvFiles', 'ItemRatio.txt')
+filename = os.path.join('TxtFiles', 'ItemRatio.txt')
 lines = get_filelines(filename)
 
 col_names = lines[0].split('\t')
@@ -226,13 +181,21 @@ for key, val in config.items(section):
         line_split[idx_unique_min] = unique_min_val
         lines[i] = '\t'.join(line_split)
 
-
-# once done with edits to the tsv lines write the file.  then use tsv_to_bin to create bins, and WinMPQ to add to mpq
+# once done with edits to the txt lines write the file.  then use txt_to_bin to create bins, and WinMPQ to add to mpq
 with open(filename, 'w') as f:
     f.write("\n".join(lines) + "\n")
 
-# TODO: This can be called once and then mpq_add_bin can be called on all the files to add
-subprocess.call(["python","convert_all_tsv_to_bin.py"])
 
-mpq_add_bin(filename)
+# convert txt to bins
+subprocess.call(["python", "convert_all_txt_to_bin.py"])
 
+
+def mpq_add_bin(filename):
+    filename_bin = os.path.basename(filename)[:-3] + 'bin'
+    path_in_mpq = 'data\\global\\excel\\' + filename_bin
+    code = subprocess.call(r'cd WinMPQ && .\\WinMPQ.exe add ..\\mpqModded\\Patch_D2.mpq ..\\BinFilesModded\\' + filename_bin + ' ' + path_in_mpq, shell=True)
+    print(f'code: {code}')
+    print(f"Added {filename_bin} to mpqModded\\patch_d2.mpq")
+
+for file in target_files:
+    mpq_add_bin(file)
