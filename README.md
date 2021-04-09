@@ -25,7 +25,7 @@ Copy and paste your current `patch_d2.mpq` from `<yourpath>.../Diablo II/` to `m
 Edit the sections in `settings.ini` ([settings](https://github.com/pairofdocs/mod_maker_mpq/blob/master/settings.ini)) and create a modded `patch_d2.mp` by 
 
 douple clicking on `make_mod_mpq.exe` (or from a terminal with `python make_mod_mpq.py`). 
-Example of [exe in folder](https://github.com/pairofdocs/mod_maker_mpq/blob/master/img/folder_and_exe.jpg).
+Example of [exe in folder](https://github.com/pairofdocs/mod_maker_mpq/blob/master/img/folder_and_exe_organization.jpg).
 
 To have `mod maker mpq` ignore any settings comment the lines out with `;`s (semicolons).
 But leave the "sections" lines, those starting with `[`, as they are.
