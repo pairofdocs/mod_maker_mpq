@@ -11,12 +11,14 @@ Then install `RunPack3` from `py_converter/WinMPQ/RunPack3` by double clicking s
 
 
 ### Usage
-Copy and paste your current `patch_d2.mpq` from `../Diablo II/` to `.../mod_maker/mpqOrig/` (create the `mpqOrig` folder if it doesn't exist).
+[Download](https://github.com/pairofdocs/mod_maker_mpq/archive/refs/heads/master.zip) the files from this github page and unzip to a location on your PC.
+
+Copy and paste your current `patch_d2.mpq` from `../Diablo II/` to `.../mod_maker_mpq/mpqOrig/` (create the `mpqOrig` folder if it doesn't exist).
 
 This will be the mpq file that `mod maker mpq` will add your modified `.bin` files to.
 The output, modified mpq will be in `mpqModded/patch_d2.mpq`.
 
-Edit the sections in `settings.ini` and create `.bin` files that are added to `patch_d2.mp` with:
+Edit the sections in `settings.ini` ([settings](https://github.com/pairofdocs/mod_maker_mpq/blob/master/settings.ini)) and create a modded `patch_d2.mp` with:
 ```cmd
 python make_mod_mpq.py
 ```
@@ -39,7 +41,7 @@ Moo Moo Farm=4000
 Once `mod maker mpq` adds the modded `.bin` files to `mpqModded/patch_d2.mpq` copy and paste the modded mpq to your Diablo II folder (usually `.../Program Files (x86)/Diablo II/`).
 
 
-### Screenshots
+### Screenshots and Features
 - Azurewrath crystal sword enabled
 ![Azurewrath crystal sword enabled](./img/azurewrath_csword.jpg)
 
@@ -47,6 +49,10 @@ Once `mod maker mpq` adds the modded `.bin` files to `mpqModded/patch_d2.mpq` co
 ![Constricting ring enabled](./img/constricting_ring.jpg)
 
 - Monster density in the cow level
+
+- Cooldown reduced for Meteor
+
+- Cooldown reduced for Frozen Orb
 
 
 ### Credits

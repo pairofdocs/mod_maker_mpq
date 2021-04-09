@@ -189,6 +189,9 @@ with open(filename, 'w') as f:
 # convert txt to bins
 subprocess.call(["python", "convert_all_txt_to_bin.py"])
 
+# copy orig mpq to mpqModded dir
+os.system(r'copy mpqOrig\\patch_d2.mpq mpqModded\\patch_d2.mpq')
+
 
 def mpq_add_bin(filename):
     filename_bin = os.path.basename(filename)[:-3] + 'bin'
@@ -197,5 +200,12 @@ def mpq_add_bin(filename):
     print(f'code: {code}')
     print(f"Added {filename_bin} to mpqModded\\patch_d2.mpq")
 
-for file in target_files:
-    mpq_add_bin(file)
+for filename in target_files:
+    mpq_add_bin(filename)
+
+
+# clean up
+for filename in target_files:
+    txtpath = os.path.join('TxtFiles', filename.replace('.bin', '.txt'))
+    if os.path.isfile(txtpath):
+        os.remove(txtpath)
