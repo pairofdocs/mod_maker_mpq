@@ -209,3 +209,4 @@ for filename in target_files:
     txtpath = os.path.join('TxtFiles', filename.replace('.bin', '.txt'))
     if os.path.isfile(txtpath):
         os.remove(txtpath)
+os.removedirs('TxtFiles')

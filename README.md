@@ -2,6 +2,8 @@
 A tool to create modded MPQ files with commonly changed settings all in one place.
 Works for LoD and it's Mods.
 
+Featues: change monster density in levels, change unique drop rates, change rune drop rates, enable old LoD items that are still in the game files, change cooldown of Sorceress skills like meteor, frozen orb.
+
 ### (Step 0 prep) Install WinMPQ libs 
 Mod maker MPQ uses WinMPQ from https://sfsrealm.hopto.org/downloads/WinMPQ.html to automatically add `.bin` files to an `.mpq` file.
 
@@ -54,6 +56,9 @@ Stony Tomb Level 2=3000
 
 ### Add patch_d2.mpq to Diablo II
 Once `mod maker mpq` does it's processing and adds modded `.bin` files to `mod_maker_mpq/mpqModded/patch_d2.mpq` copy and paste the modded mpq to your Diablo II folder (usually `.../Program Files (x86)/Diablo II/`).
+
+The original game mpq can still be used whenever you wish. 
+It is kept in `mod_maker_mpq/mpqOrig/`.
 
 
 ### Screenshots and Features
