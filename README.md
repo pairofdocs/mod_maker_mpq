@@ -3,7 +3,7 @@ A tool to create modded MPQ files with commonly changed settings all in one plac
 Works for LoD and it's Mods.
 
 ### Install WinMPQ libs
-Mod maker uses WinMPQ from https://sfsrealm.hopto.org/downloads/WinMPQ.html to automatically add `.bin` files to an `.mpq` file.
+Mod maker MPQ uses WinMPQ from https://sfsrealm.hopto.org/downloads/WinMPQ.html to automatically add `.bin` files to an `.mpq` file.
 
 First install `Vbr4` from `py_converter/WinMPQ/Vbr4` by double clicking setup.exe.
 
@@ -47,6 +47,14 @@ Once `mod maker mpq` adds the modded `.bin` files to `mpqModded/patch_d2.mpq` co
 ![Constricting ring enabled](./img/constricting_ring.jpg)
 
 - Monster density in the cow level
+
+
+### Credits
+Credit goes to D2Mods.info for many useful resources,
+
+https://github.com/CaiMiao/d2bin2txt for data structures of Diablo files.
+
+Thank you collaborators @Duits, @ogjex
 
 
 ### Inspired by
