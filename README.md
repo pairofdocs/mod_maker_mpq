@@ -50,9 +50,9 @@ Once `mod maker mpq` adds the modded `.bin` files to `mpqModded/patch_d2.mpq` co
 
 
 ### Credits
-Credit goes to D2Mods.info for many useful resources,
+Credit goes to [D2Mods.info](https://d2mods.info/home.php) for many useful resources,
 
-https://github.com/CaiMiao/d2bin2txt for data structures of Diablo files.
+https://github.com/CaiMiao/d2bin2txt for data structures of Diablo 2 files.
 
 Thank you collaborators @Duits, @ogjex
 
