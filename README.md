@@ -27,7 +27,7 @@ Edit the sections in `settings.ini` ([settings](https://github.com/pairofdocs/mo
 douple clicking on `make_mod_mpq.exe` (or from a terminal with `python make_mod_mpq.py`).
 
 To have `mod maker mpq` ignore any settings comment the lines out with `;`s (semicolons).
-But leave the "sections", lines starting with `[`, as they are.
+But leave the "sections" lines, those starting with `[`, as they are.
 
 
 ### Example
