@@ -1,4 +1,4 @@
-from os import path
+from os import path, system
 
 from binstructs import *
 
@@ -73,6 +73,7 @@ def convert_bin_to_txt(basefilename):
 
 
 if __name__ == "__main__":
+    system('mkdir TxtFiles')
     for name in files_and_structs:
         print(f'Starting: {name}')
         convert_bin_to_txt(name)

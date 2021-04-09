@@ -1,4 +1,4 @@
-from os import path
+from os import path, system
 
 from convert_all_bins_to_txt import files_and_structs
 
@@ -60,6 +60,7 @@ def convert_txt_to_bin(basefilename):
 
 
 if __name__ == "__main__":
+    system('mkdir BinFilesModded')
     # convert all txt files to bins
     for name in files_and_structs:
         convert_txt_to_bin(name)
