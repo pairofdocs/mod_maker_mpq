@@ -2,21 +2,23 @@
 A tool to create modded MPQ files with commonly changed settings all in one place.
 Works for LoD and it's Mods.
 
-### Install WinMPQ libs
+### (Step 0 prep) Install WinMPQ libs 
 Mod maker MPQ uses WinMPQ from https://sfsrealm.hopto.org/downloads/WinMPQ.html to automatically add `.bin` files to an `.mpq` file.
 
-First install `Vbr4` from `py_converter/WinMPQ/Vbr4` by double clicking setup.exe.
+[Download](https://github.com/pairofdocs/mod_maker_mpq/archive/refs/heads/master.zip) the files from this github page and unzip to a location on your PC.
 
-Then install `RunPack3` from `py_converter/WinMPQ/RunPack3` by double clicking setup.exe.
+First install `Vbr4` from `mod_maker_mpq/WinMPQ/Vbr4` by double clicking setup.exe.
+
+Then install `RunPack3` from `mod_maker_mpq/WinMPQ/RunPack3` by double clicking setup.exe.
+These installations need to be done only once.
 
 
 ### Usage
-[Download](https://github.com/pairofdocs/mod_maker_mpq/archive/refs/heads/master.zip) the files from this github page and unzip to a location on your PC.
+If not done already [download](https://github.com/pairofdocs/mod_maker_mpq/archive/refs/heads/master.zip) the files from this github page and unzip to a location on your PC.
 
 Copy and paste your current `patch_d2.mpq` from `../Diablo II/` to `.../mod_maker_mpq/mpqOrig/` (create the `mpqOrig` folder if it doesn't exist).
 
-This will be the mpq file that `mod maker mpq` will add your modified `.bin` files to.
-The output, modified mpq will be in `mpqModded/patch_d2.mpq`.
+`mod maker mpq` will use the original mpq file and based on configured settings will create a modified one in `mpqModded/patch_d2.mpq`.
 
 Edit the sections in `settings.ini` ([settings](https://github.com/pairofdocs/mod_maker_mpq/blob/master/settings.ini)) and create a modded `patch_d2.mp` with:
 ```cmd
@@ -58,7 +60,9 @@ Once `mod maker mpq` adds the modded `.bin` files to `mpqModded/patch_d2.mpq` co
 ### Credits
 Credit goes to [D2Mods.info](https://d2mods.info/home.php) for many useful resources,
 
-https://github.com/CaiMiao/d2bin2txt for data structures of Diablo 2 files.
+https://github.com/CaiMiao/d2bin2txt for data structures of Diablo 2 files,
+
+https://github.com/fabd/diablo2/tree/master/code/d2_113_data for Diablo 2 data txt files.
 
 Thank you collaborators @Duits, @ogjex
 
