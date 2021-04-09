@@ -24,7 +24,8 @@ Copy and paste your current `patch_d2.mpq` from `<yourpath>.../Diablo II/` to `m
 
 Edit the sections in `settings.ini` ([settings](https://github.com/pairofdocs/mod_maker_mpq/blob/master/settings.ini)) and create a modded `patch_d2.mp` by 
 
-douple clicking on `make_mod_mpq.exe` (or from a terminal with `python make_mod_mpq.py`).
+douple clicking on `make_mod_mpq.exe` (or from a terminal with `python make_mod_mpq.py`). 
+Example of [exe in folder](https://github.com/pairofdocs/mod_maker_mpq/blob/master/img/folder_and_exe.jpg).
 
 To have `mod maker mpq` ignore any settings comment the lines out with `;`s (semicolons).
 But leave the "sections" lines, those starting with `[`, as they are.
@@ -68,10 +69,18 @@ It is kept in `mod_maker_mpq/mpqOrig/`.
 ![Constricting ring enabled](./img/constricting_ring.jpg)
 
 - Monster density in the cow level
+![Monster density in the cow level](./img/mondensity.jpg)
+
+- Cooldown reduced for Frozen Orb
+![Cooldown reduced for Frozen Orb](./img/forb_cooldown.jpg)
 
 - Cooldown reduced for Meteor
 
-- Cooldown reduced for Frozen Orb
+- Edit your drop rate for Uniques
+![Edit your drop rate for Uniques](./img/drop_rate.jpg)
+
+- Edit your drop rate for Runes
+![Edit your drop rate for Runes](./img/drop_rate_runes.jpg)
 
 
 ### Credits
