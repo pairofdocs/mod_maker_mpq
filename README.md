@@ -10,15 +10,15 @@ Mod maker MPQ uses WinMPQ from https://sfsrealm.hopto.org/downloads/WinMPQ.html 
 First install `Vbr4` from `mod_maker_mpq/WinMPQ/Vbr4` by double clicking setup.exe.
 
 Then install `RunPack3` from `mod_maker_mpq/WinMPQ/RunPack3` by double clicking setup.exe.
-These installations need to be done only once.
+These libs need to be installed only once.
 
 
 ### Usage
-If not done already [download](https://github.com/pairofdocs/mod_maker_mpq/archive/refs/heads/master.zip) the files from this github page and unzip to a location on your PC.
+If not done already, [download](https://github.com/pairofdocs/mod_maker_mpq/archive/refs/heads/master.zip) the files from this github page and unzip to a location on your PC.
 
-Copy and paste your current `patch_d2.mpq` from `../Diablo II/` to `.../mod_maker_mpq/mpqOrig/` (create the `mpqOrig` folder if it doesn't exist).
+Copy and paste your current `patch_d2.mpq` from `<yourpath>.../Diablo II/` to `mod_maker_mpq/mpqOrig/`.
 
-`mod maker mpq` will use the original mpq file and based on configured settings will create a modified one in `mpqModded/patch_d2.mpq`.
+`mod maker mpq` will use the original mpq file and based on configured settings will create a modified one in `mod_maker_mpq/mpqModded/`.
 
 Edit the sections in `settings.ini` ([settings](https://github.com/pairofdocs/mod_maker_mpq/blob/master/settings.ini)) and create a modded `patch_d2.mp` with:
 ```cmd
@@ -26,6 +26,7 @@ python make_mod_mpq.py
 ```
 
 To have `mod maker mpq` ignore any settings comment the lines out with `;`s (semicolons).
+But leave the "sections", lines starting with `[`, as they are.
 
 
 ### Example
@@ -38,9 +39,21 @@ Edit `Monster Density` for the Secret Cow Level/Moo Moo Farm in section `[Monste
 Moo Moo Farm=4000
 ```
 
+To add a level that is not present in the default settings, add the exact level name to the ini and specify a density value.
+A reference for LoD level names is [here](https://github.com/fabd/diablo2/blob/master/code/d2_113_data/Levels.txt) under the column `LevelName`.
+
+Add the Stony Tombs with:
+
+```ini
+; default 2200
+Stony Tomb Level 1=3000
+
+Stony Tomb Level 2=3000
+```
+
 
 ### Add patch_d2.mpq to Diablo II
-Once `mod maker mpq` adds the modded `.bin` files to `mpqModded/patch_d2.mpq` copy and paste the modded mpq to your Diablo II folder (usually `.../Program Files (x86)/Diablo II/`).
+Once `mod maker mpq` does it's processing and adds modded `.bin` files to `mod_maker_mpq/mpqModded/patch_d2.mpq` copy and paste the modded mpq to your Diablo II folder (usually `.../Program Files (x86)/Diablo II/`).
 
 
 ### Screenshots and Features
